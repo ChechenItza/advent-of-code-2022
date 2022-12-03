@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func sol1() {
+func sol2() {
 	client := &http.Client{}
 
 	req, err := http.NewRequest("GET", "https://adventofcode.com/2022/day/1/input", nil)
@@ -32,7 +32,9 @@ func sol1() {
 		return
 	}
 
-	var maxSum int64 = 0
+	var maxSum1 int64 = 0
+	var maxSum2 int64 = 0
+	var maxSum3 int64 = 0
 	baggages := strings.Split(string(data), "\n\n")
 	for _, baggage := range baggages {
 		items := strings.Split(baggage, "\n")
@@ -53,10 +55,17 @@ func sol1() {
 			sum += icalories
 		}
 
-		if sum > maxSum {
-			maxSum = sum
+		if sum > maxSum1 {
+			maxSum3 = maxSum2
+			maxSum2 = maxSum1
+			maxSum1 = sum
+		} else if sum > maxSum2 {
+			maxSum3 = maxSum2
+			maxSum2 = sum
+		} else if sum > maxSum3 {
+			maxSum3 = sum
 		}
 	}
 
-	fmt.Println(maxSum)
+	fmt.Println(maxSum1 + maxSum2 + maxSum3)
 }
