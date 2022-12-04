@@ -1,6 +1,8 @@
-import getInput from "./input";
+import getInput from "./input"
 
-const rules1: {[index: string]: number} = {
+type rulesType = {[index: string]: number}
+
+const rules1: rulesType = {
   "AX": 4,
   "AY": 8,
   "AZ": 3,
@@ -12,7 +14,7 @@ const rules1: {[index: string]: number} = {
   "CZ": 6
 }
 
-const rules2: {[index: string]: number} = {
+const rules2: rulesType = {
   "AX": 3,
   "AY": 4,
   "AZ": 8,
@@ -24,7 +26,7 @@ const rules2: {[index: string]: number} = {
   "CZ": 7
 }
 
-async function sol(rules: {[index: string]: number}) {
+async function sol(rules: rulesType) {
   const table = await getInput(2)
 
   let totalScore = 0
